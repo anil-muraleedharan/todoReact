@@ -9,8 +9,15 @@ class Todo extends React.Component {
       taskList: [],
       taskToAdd: '',
     };
+    this.updateTaskStatus = this.updateTaskStatus.bind(this);
     this.updateTaskToAdd = this.updateTaskToAdd.bind(this);
     this.saveTask = this.saveTask.bind(this);
+  }
+
+  updateTaskStatus(taskId) {
+    const updatedTaskList = this.state.taskList.slice();
+    updatedTaskList[taskId].isDone = !updatedTaskList[taskId].isDone;
+    this.setState({ taskList: updatedTaskList });
   }
 
   updateTaskToAdd(value) {
@@ -25,7 +32,13 @@ class Todo extends React.Component {
 
   render() {
     const tasks = this.state.taskList.map(({ task, isDone }, index) => (
-      <TodoTask task={task} isDone={isDone} key={index} />
+      <TodoTask
+        task={task}
+        isDone={isDone}
+        key={index}
+        id={index}
+        onClick={this.updateTaskStatus}
+      />
     ));
 
     return (

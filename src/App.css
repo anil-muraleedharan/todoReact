@@ -5,3 +5,7 @@
 .not-done {
   text-decoration: none;
 }
+
+.task {
+  cursor: pointer;
+}
