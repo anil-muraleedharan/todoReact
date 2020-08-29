@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TodoTask = ({ task, isDone }) => (
-  <p style={{ textDecoration: isDone ? 'line-through' : 'none' }}>{task}</p>
+  <p className={isDone ? 'done' : 'not-done'}>{task}</p>
 );
 
 export default TodoTask;
