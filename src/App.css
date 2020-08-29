@@ -1,11 +1,61 @@
-.done {
-  text-decoration: line-through;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
 }
 
-.not-done {
-  text-decoration: none;
+.header {
+  margin-left: 100px;
+}
+
+.sub-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 90px;
+}
+
+.input-box {
+  width: 250px;
+  height: 25px;
+  margin-top: 20px;
+  font-size: 16px;
+  border: 1.2px solid #aaa;
+  border-radius: 3px;
+}
+
+.input-box:focus {
+  outline: none;
 }
 
 .task {
+  display: flex;
   cursor: pointer;
+  margin: 3px 0px;
+}
+
+.done div {
+  background-color: lightgreen;
+}
+
+.not-done div {
+  background-color: lightskyblue;
+}
+
+.done span {
+  text-decoration: line-through;
+}
+
+.not-done span {
+  text-decoration: none;
+}
+
+.done div,
+.not-done div {
+  width: 8px;
+}
+
+.done span,
+.not-done span {
+  font-size: 18px;
+  margin-left: 10px;
 }

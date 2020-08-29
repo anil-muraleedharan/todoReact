@@ -38,7 +38,7 @@ class Todo extends React.Component {
     ));
 
     return (
-      <div>
+      <div className='sub-container'>
         {tasks}
         <InputBox onEnter={this.saveTask} />
       </div>

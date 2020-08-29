@@ -26,6 +26,7 @@ class InputBox extends React.Component {
         value={this.state.value}
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}
+        className='input-box'
       />
     );
   }
