@@ -7,10 +7,8 @@ class Todo extends React.Component {
     super(props);
     this.state = {
       taskList: [],
-      taskToAdd: '',
     };
     this.updateTaskStatus = this.updateTaskStatus.bind(this);
-    this.updateTaskToAdd = this.updateTaskToAdd.bind(this);
     this.saveTask = this.saveTask.bind(this);
   }
 
@@ -20,14 +18,12 @@ class Todo extends React.Component {
     this.setState({ taskList: updatedTaskList });
   }
 
-  updateTaskToAdd(value) {
-    this.setState({ taskToAdd: value });
-  }
-
-  saveTask() {
-    const { taskList, taskToAdd } = this.state;
-    const updatedTaskList = taskList.concat({ task: taskToAdd, isDone: false });
-    this.setState({ taskList: updatedTaskList, taskToAdd: '' });
+  saveTask(task) {
+    const updatedTaskList = this.state.taskList.concat({
+      task: task,
+      isDone: false,
+    });
+    this.setState({ taskList: updatedTaskList });
   }
 
   render() {
@@ -43,12 +39,8 @@ class Todo extends React.Component {
 
     return (
       <div>
-        <InputBox
-          value={this.state.taskToAdd}
-          onChange={this.updateTaskToAdd}
-          onEnter={this.saveTask}
-        />
         {tasks}
+        <InputBox onEnter={this.saveTask} />
       </div>
     );
   }
