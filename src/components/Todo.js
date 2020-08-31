@@ -1,6 +1,7 @@
 import React from 'react';
 import InputBox from './InputBox';
 import TodoTask from './TodoTask';
+import { getDefaultStatus, toggleCurrentStatus } from './taskStatus';
 
 class Todo extends React.Component {
   constructor(props) {
@@ -14,25 +15,19 @@ class Todo extends React.Component {
 
   updateTaskStatus(taskId) {
     const updatedTaskList = this.state.taskList.slice();
-    let { isDoing, isDone } = updatedTaskList[taskId].status;
-    let status = { isDone: false, isDoing: true };
-    if (isDoing) {
-      status.isDone = true;
-      status.isDoing = false;
-    }
-    if (isDone) {
-      status.isDoing = false;
-    }
-    updatedTaskList[taskId].status = status;
+    const currentStatus = updatedTaskList[taskId].status;
+    updatedTaskList[taskId].status = toggleCurrentStatus(currentStatus);
     this.setState({ taskList: updatedTaskList });
   }
 
   saveTask(task) {
-    const updatedTaskList = this.state.taskList.concat({
-      task: task,
-      status: { isDone: false, isDoing: false },
+    this.setState(({ taskList }) => {
+      const updatedTaskList = taskList.concat({
+        task: task,
+        status: getDefaultStatus(),
+      });
+      return { taskList: updatedTaskList };
     });
-    this.setState({ taskList: updatedTaskList });
   }
 
   render() {
