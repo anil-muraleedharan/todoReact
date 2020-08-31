@@ -1,6 +1,6 @@
 import React from 'react';
 import InputBox from './InputBox';
-import TodoTask from './TodoTask';
+import TaskList from './TaskList';
 import { getDefaultStatus, toggleCurrentStatus } from './taskStatus';
 
 class Todo extends React.Component {
@@ -31,19 +31,9 @@ class Todo extends React.Component {
   }
 
   render() {
-    const tasks = this.state.taskList.map(({ task, status }, index) => (
-      <TodoTask
-        task={task}
-        status={status}
-        key={index}
-        id={index}
-        onClick={this.updateTaskStatus}
-      />
-    ));
-
     return (
       <div className='sub-container'>
-        {tasks}
+        <TaskList tasks={this.state.taskList} onClick={this.updateTaskStatus} />
         <InputBox onEnter={this.saveTask} />
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoTask = ({ task, id, status, onClick }) => {
+const Task = ({ task, id, status, onClick }) => {
   const handleClick = () => onClick(id);
   const classes = `task ${status}`;
   return (
@@ -11,4 +11,4 @@ const TodoTask = ({ task, id, status, onClick }) => {
   );
 };
 
-export default TodoTask;
+export default Task;
