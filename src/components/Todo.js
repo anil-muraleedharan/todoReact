@@ -14,23 +14,32 @@ class Todo extends React.Component {
 
   updateTaskStatus(taskId) {
     const updatedTaskList = this.state.taskList.slice();
-    updatedTaskList[taskId].isDone = !updatedTaskList[taskId].isDone;
+    let { isDoing, isDone } = updatedTaskList[taskId].status;
+    let status = { isDone: false, isDoing: true };
+    if (isDoing) {
+      status.isDone = true;
+      status.isDoing = false;
+    }
+    if (isDone) {
+      status.isDoing = false;
+    }
+    updatedTaskList[taskId].status = status;
     this.setState({ taskList: updatedTaskList });
   }
 
   saveTask(task) {
     const updatedTaskList = this.state.taskList.concat({
       task: task,
-      isDone: false,
+      status: { isDone: false, isDoing: false },
     });
     this.setState({ taskList: updatedTaskList });
   }
 
   render() {
-    const tasks = this.state.taskList.map(({ task, isDone }, index) => (
+    const tasks = this.state.taskList.map(({ task, status }, index) => (
       <TodoTask
         task={task}
-        isDone={isDone}
+        status={status}
         key={index}
         id={index}
         onClick={this.updateTaskStatus}

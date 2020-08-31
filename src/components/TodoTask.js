@@ -1,8 +1,15 @@
 import React from 'react';
 
-const TodoTask = ({ task, id, isDone, onClick }) => {
+const getStatusClassName = ({ isDoing, isDone }) => {
+  if (isDone) {
+    return 'done';
+  }
+  return isDoing ? 'doing' : 'todo';
+};
+
+const TodoTask = ({ task, id, status, onClick }) => {
   const handleClick = () => onClick(id);
-  const classes = `task ${isDone ? 'done' : 'not-done'}`;
+  const classes = `task ${getStatusClassName(status)}`;
   return (
     <div className={classes}>
       <div></div>

@@ -33,29 +33,36 @@
   margin: 3px 0px;
 }
 
+.todo div {
+  background-color: lightskyblue;
+}
+
+.doing div {
+  background-color: lightsalmon;
+}
+
 .done div {
   background-color: lightgreen;
 }
 
-.not-done div {
-  background-color: lightskyblue;
+.todo span,
+.doing span {
+  text-decoration: none;
 }
 
 .done span {
   text-decoration: line-through;
 }
 
-.not-done span {
-  text-decoration: none;
-}
-
 .done div,
-.not-done div {
+.todo div,
+.doing div {
   width: 8px;
 }
 
 .done span,
-.not-done span {
+.todo span,
+.doing span {
   font-size: 18px;
   margin-left: 10px;
 }
