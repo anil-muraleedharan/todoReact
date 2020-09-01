@@ -4,23 +4,30 @@
   font-family: sans-serif;
 }
 
-.header {
-  margin-left: 100px;
-}
-
 .sub-container {
   display: flex;
   flex-direction: column;
   margin-left: 90px;
 }
 
-.input-box {
+.header,
+.header:focus {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.input-box,
+.header:focus {
   width: 250px;
-  height: 25px;
+  height: 28px;
+  line-height: 25px;
   margin-top: 20px;
-  font-size: 16px;
   border: 1.2px solid #aaa;
   border-radius: 3px;
+}
+
+.new-task {
+  font-size: 18px;
 }
 
 .input-box:focus {
