@@ -9,6 +9,7 @@ class Todo extends React.Component {
     super(props);
     this.state = {
       title: 'Todo',
+      currentTaskId: 1,
       taskList: [],
     };
     this.updateTitle = this.updateTitle.bind(this);
@@ -17,19 +18,21 @@ class Todo extends React.Component {
   }
 
   saveTask(task) {
-    this.setState(({ taskList }) => {
+    this.setState(({ taskList, currentTaskId }) => {
       const updatedTaskList = taskList.concat({
+        id: currentTaskId,
         task: task,
         status: getDefaultStatus(),
       });
-      return { taskList: updatedTaskList };
+      return { taskList: updatedTaskList, currentTaskId: currentTaskId + 1 };
     });
   }
 
   updateTaskStatus(taskId) {
     const updatedTaskList = this.state.taskList.slice();
-    const currentStatus = updatedTaskList[taskId].status;
-    updatedTaskList[taskId].status = toggleCurrentStatus(currentStatus);
+    const taskIndex = updatedTaskList.findIndex((task) => task.id === taskId);
+    const currentStatus = updatedTaskList[taskIndex].status;
+    updatedTaskList[taskIndex].status = toggleCurrentStatus(currentStatus);
     this.setState({ taskList: updatedTaskList });
   }
 
