@@ -3,13 +3,13 @@ import React from 'react';
 class InputBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: props.value };
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
   onKeyDown({ keyCode }) {
-    if (keyCode === 13) {
+    if (keyCode === 13 && this.state.value !== '') {
       this.props.onEnter(this.state.value);
       this.setState({ value: '' });
     }
@@ -26,7 +26,7 @@ class InputBox extends React.Component {
         value={this.state.value}
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}
-        className='input-box'
+        className={`input-box ${this.props.className}`}
       />
     );
   }
