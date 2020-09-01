@@ -4,9 +4,9 @@ const Task = ({ task, id, status, onClick }) => {
   const handleClick = () => onClick(id);
   const classes = `task ${status}`;
   return (
-    <div className={classes}>
+    <div className={classes} onClick={handleClick}>
       <div></div>
-      <span onClick={handleClick}>{task}</span>
+      <span>{task}</span>
     </div>
   );
 };
