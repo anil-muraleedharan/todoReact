@@ -4,22 +4,22 @@ import InputBox from './InputBox';
 class TodoTitle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isClicked: false };
+    this.state = { isTitleEditing: false };
     this.onClick = this.onClick.bind(this);
     this.onEnter = this.onEnter.bind(this);
   }
 
   onClick() {
-    this.setState({ isClicked: true });
+    this.setState({ isTitleEditing: true });
   }
 
   onEnter(heading) {
-    this.setState({ isClicked: false });
+    this.setState({ isTitleEditing: false });
     this.props.onEnter(heading);
   }
 
   render() {
-    if (this.state.isClicked) {
+    if (this.state.isTitleEditing) {
       return (
         <InputBox
           onEnter={this.onEnter}
