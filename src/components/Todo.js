@@ -61,7 +61,7 @@ class Todo extends React.Component {
       <div className='sub-container'>
         <div className='todo-header'>
           <TodoTitle title={this.state.title} onEnter={this.updateTitle} />
-          <button className='remove-todo' onClick={this.deleteTodo}>
+          <button className='delete-todo' onClick={this.deleteTodo}>
             x
           </button>
         </div>

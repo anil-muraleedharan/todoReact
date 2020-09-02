@@ -12,7 +12,7 @@ const Task = ({ task, id, status, onClick, deleteTask }) => {
           {task}
         </div>
       </div>
-      <button className='remove-task' onClick={handleDeleteButtonClick}>
+      <button className='delete-task' onClick={handleDeleteButtonClick}>
         x
       </button>
     </div>

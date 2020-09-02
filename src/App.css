@@ -91,8 +91,8 @@
   overflow: scroll;
 }
 
-.remove-task,
-.remove-todo {
+.delete-task,
+.delete-todo {
   display: none;
   border: none;
   background-color: white;
@@ -100,8 +100,8 @@
   font-weight: 600;
 }
 
-.task:hover > .remove-task,
-.todo-header:hover > .remove-todo {
+.task:hover > .delete-task,
+.todo-header:hover > .delete-todo {
   display: block;
   cursor: pointer;
 }
