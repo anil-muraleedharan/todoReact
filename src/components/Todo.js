@@ -16,6 +16,7 @@ class Todo extends React.Component {
     this.saveTask = this.saveTask.bind(this);
     this.updateTaskStatus = this.updateTaskStatus.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   saveTask(task) {
@@ -47,10 +48,23 @@ class Todo extends React.Component {
     }));
   }
 
+  deleteTodo() {
+    this.setState((state) => ({
+      title: 'Todo',
+      currentTaskId: 1,
+      taskList: [],
+    }));
+  }
+
   render() {
     return (
       <div className='sub-container'>
-        <TodoTitle title={this.state.title} onEnter={this.updateTitle} />
+        <div className='todo-header'>
+          <TodoTitle title={this.state.title} onEnter={this.updateTitle} />
+          <button className='remove-todo' onClick={this.deleteTodo}>
+            x
+          </button>
+        </div>
         <TaskList
           tasks={this.state.taskList}
           onClick={this.updateTaskStatus}
