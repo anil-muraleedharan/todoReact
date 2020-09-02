@@ -6,9 +6,11 @@ const Task = ({ task, id, status, onClick, deleteTask }) => {
   const classes = `task ${status}`;
   return (
     <div className={classes}>
-      <div className='status' onClick={handleClick}></div>
-      <div className='task-content' onClick={handleClick}>
-        {task}
+      <div className='task-container'>
+        <div className='status' onClick={handleClick}></div>
+        <div className='task-content' onClick={handleClick}>
+          {task}
+        </div>
       </div>
       <button className='delete-button' onClick={handleDeleteButtonClick}>
         x

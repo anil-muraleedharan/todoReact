@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 90px;
-  width: 400px;
+  width: 300px;
 }
 
 .header,
@@ -38,9 +38,16 @@
 
 .task {
   display: flex;
+  justify-content: left;
   cursor: pointer;
   margin: 8px 0px;
   width: 98%;
+  height: 22px;
+}
+
+.task-container {
+  width: 98%;
+  display: flex;
 }
 
 .todo .status {
@@ -68,18 +75,26 @@
 .todo .status,
 .doing .status {
   width: 5px;
-  height: auto;
 }
 
 .done .task-content,
 .todo .task-content,
 .doing .task-content {
-  font-size: 18px;
+  padding-top: 3px;
+  font-size: 19px;
   margin-left: 10px;
-  width: 98%;
   overflow: scroll;
 }
 
 .delete-button {
-  font-size: 14px;
+  display: none;
+  border: none;
+  background-color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.task:hover > .delete-button {
+  display: block;
+  cursor: pointer;
 }
