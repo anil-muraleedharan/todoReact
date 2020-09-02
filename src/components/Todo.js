@@ -15,6 +15,7 @@ class Todo extends React.Component {
     this.updateTitle = this.updateTitle.bind(this);
     this.saveTask = this.saveTask.bind(this);
     this.updateTaskStatus = this.updateTaskStatus.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
   saveTask(task) {
@@ -40,11 +41,21 @@ class Todo extends React.Component {
     this.setState({ title });
   }
 
+  deleteTask(taskId) {
+    this.setState(({ taskList }) => ({
+      taskList: taskList.filter(({ id }) => id !== taskId),
+    }));
+  }
+
   render() {
     return (
       <div className='sub-container'>
         <TodoTitle title={this.state.title} onEnter={this.updateTitle} />
-        <TaskList tasks={this.state.taskList} onClick={this.updateTaskStatus} />
+        <TaskList
+          tasks={this.state.taskList}
+          onClick={this.updateTaskStatus}
+          deleteTask={this.deleteTask}
+        />
         <InputBox onEnter={this.saveTask} className='new-task' value='' />
       </div>
     );

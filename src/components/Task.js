@@ -1,12 +1,18 @@
 import React from 'react';
 
-const Task = ({ task, id, status, onClick }) => {
+const Task = ({ task, id, status, onClick, deleteTask }) => {
   const handleClick = () => onClick(id);
+  const handleDeleteButtonClick = () => deleteTask(id);
   const classes = `task ${status}`;
   return (
-    <div className={classes} onClick={handleClick}>
-      <div></div>
-      <span>{task}</span>
+    <div className={classes}>
+      <div className='status' onClick={handleClick}></div>
+      <div className='task-content' onClick={handleClick}>
+        {task}
+      </div>
+      <button className='delete-button' onClick={handleDeleteButtonClick}>
+        x
+      </button>
     </div>
   );
 };

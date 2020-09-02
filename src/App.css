@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 90px;
+  width: 400px;
 }
 
 .header,
@@ -38,40 +39,47 @@
 .task {
   display: flex;
   cursor: pointer;
-  margin: 3px 0px;
-  width: max-content;
+  margin: 8px 0px;
+  width: 98%;
 }
 
-.todo div {
+.todo .status {
   background-color: lightskyblue;
 }
 
-.doing div {
+.doing .status {
   background-color: lightsalmon;
 }
 
-.done div {
+.done .status {
   background-color: lightgreen;
 }
 
-.todo span,
-.doing span {
+.todo .task-content,
+.doing .task-content {
   text-decoration: none;
 }
 
-.done span {
+.done .task-content {
   text-decoration: line-through;
 }
 
-.done div,
-.todo div,
-.doing div {
-  width: 8px;
+.done .status,
+.todo .status,
+.doing .status {
+  width: 5px;
+  height: auto;
 }
 
-.done span,
-.todo span,
-.doing span {
+.done .task-content,
+.todo .task-content,
+.doing .task-content {
   font-size: 18px;
   margin-left: 10px;
+  width: 98%;
+  overflow: scroll;
+}
+
+.delete-button {
+  font-size: 14px;
 }
