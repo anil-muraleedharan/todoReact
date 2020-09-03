@@ -2,6 +2,7 @@ import React from 'react';
 import TodoTitle from './TodoTitle';
 import InputBox from './InputBox';
 import TaskList from './TaskList';
+import DeleteButton from './DeleteButton';
 import { getDefaultStatus, toggleCurrentStatus } from './taskStatus';
 
 class Todo extends React.Component {
@@ -61,9 +62,7 @@ class Todo extends React.Component {
       <div className='sub-container'>
         <div className='todo-header'>
           <TodoTitle title={this.state.title} onEnter={this.updateTitle} />
-          <button className='delete-todo' onClick={this.deleteTodo}>
-            x
-          </button>
+          <DeleteButton className='delete-todo' onClick={this.deleteTodo} />
         </div>
         <TaskList
           tasks={this.state.taskList}

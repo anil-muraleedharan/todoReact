@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteButton from './DeleteButton';
 
 const Task = ({ task, id, status, onClick, deleteTask }) => {
   const handleClick = () => onClick(id);
@@ -12,9 +13,7 @@ const Task = ({ task, id, status, onClick, deleteTask }) => {
           {task}
         </div>
       </div>
-      <button className='delete-task' onClick={handleDeleteButtonClick}>
-        x
-      </button>
+      <DeleteButton className='delete-task' onClick={handleDeleteButtonClick} />
     </div>
   );
 };
