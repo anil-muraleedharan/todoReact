@@ -1,35 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class InputBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: props.value };
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
+const InputBox = (props) => {
+  const [value, setValue] = useState(props.value);
 
-  onKeyDown({ keyCode }) {
-    if (keyCode === 13 && this.state.value !== '') {
-      this.props.onEnter(this.state.value);
-      this.setState({ value: '' });
+  const onChange = (event) => setValue(event.target.value);
+
+  const onKeyDown = ({ keyCode }) => {
+    if (keyCode === 13 && value !== '') {
+      props.onEnter(value);
+      setValue('');
     }
-  }
+  };
 
-  onChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    return (
-      <input
-        type='text'
-        value={this.state.value}
-        onChange={this.onChange}
-        onKeyDown={this.onKeyDown}
-        className={`input-box ${this.props.className}`}
-      />
-    );
-  }
-}
+  return (
+    <input
+      type='text'
+      value={value}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      className={`input-box ${props.className}`}
+    />
+  );
+};
 
 export default InputBox;
