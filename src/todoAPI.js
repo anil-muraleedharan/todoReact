@@ -1,48 +1,21 @@
-import { getDefaultStatus, toggleCurrentStatus } from './components/taskStatus';
+const sendPostFetchReq = (url) =>
+  fetch(url, { method: 'post' }).then((res) => res.json());
 
-let todoTitle = 'Todo';
-let currentId = 1;
-let taskList = [];
+const getTodoData = () => fetch('api/todoData').then((res) => res.json());
 
-const getTaskList = () => taskList.slice();
+const addTask = (task) => sendPostFetchReq(`api/addTask/${task}`);
 
-const getTodoTitle = () => todoTitle;
+const updateTaskStatus = (taskId) =>
+  sendPostFetchReq(`api/updateTaskStatus/${taskId}`);
 
-const addTask = (task) => {
-  taskList.push({
-    id: currentId,
-    task,
-    status: getDefaultStatus(),
-  });
-  currentId++;
-  return getTaskList();
-};
+const updateTitle = (title) => sendPostFetchReq(`api/updateTitle/${title}`);
 
-const updateTaskStatus = (taskId) => {
-  const taskToUpdate = taskList.find((task) => task.id === taskId);
-  taskToUpdate.status = toggleCurrentStatus(taskToUpdate.status);
-  return getTaskList();
-};
+const deleteTask = (taskId) => sendPostFetchReq(`api/deleteTask/${taskId}`);
 
-const updateTitle = (title) => {
-  todoTitle = title;
-  return getTodoTitle();
-};
-
-const deleteTask = (taskId) => {
-  taskList = taskList.filter(({ id }) => id !== taskId);
-  return getTaskList();
-};
-
-const resetTodo = () => {
-  todoTitle = 'Todo';
-  currentId = 1;
-  taskList = [];
-};
+const resetTodo = () => sendPostFetchReq('api/resetTodo');
 
 export default {
-  getTodoTitle,
-  getTaskList,
+  getTodoData,
   addTask,
   updateTaskStatus,
   updateTitle,
