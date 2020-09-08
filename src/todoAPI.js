@@ -1,51 +1,51 @@
 import { getDefaultStatus, toggleCurrentStatus } from './components/taskStatus';
 
-class TodoAPI {
-  constructor() {
-    this.todoTitle = 'Todo';
-    this.currentId = 1;
-    this.taskList = [];
-  }
+let todoTitle = 'Todo';
+let currentId = 1;
+let taskList = [];
 
-  getTaskList() {
-    return this.taskList.slice();
-  }
+const getTaskList = () => taskList.slice();
 
-  getTodoTitle() {
-    return this.todoTitle;
-  }
+const getTodoTitle = () => todoTitle;
 
-  addTask(task) {
-    this.taskList.push({
-      id: this.currentId,
-      task,
-      status: getDefaultStatus(),
-    });
-    this.currentId++;
-    return this.getTaskList();
-  }
+const addTask = (task) => {
+  taskList.push({
+    id: currentId,
+    task,
+    status: getDefaultStatus(),
+  });
+  currentId++;
+  return getTaskList();
+};
 
-  updateTaskStatus(taskId) {
-    const taskToUpdate = this.taskList.find((task) => task.id === taskId);
-    taskToUpdate.status = toggleCurrentStatus(taskToUpdate.status);
-    return this.getTaskList();
-  }
+const updateTaskStatus = (taskId) => {
+  const taskToUpdate = taskList.find((task) => task.id === taskId);
+  taskToUpdate.status = toggleCurrentStatus(taskToUpdate.status);
+  return getTaskList();
+};
 
-  updateTitle(title) {
-    this.todoTitle = title;
-    return this.getTodoTitle();
-  }
+const updateTitle = (title) => {
+  todoTitle = title;
+  return getTodoTitle();
+};
 
-  deleteTask(taskId) {
-    this.taskList = this.taskList.filter(({ id }) => id !== taskId);
-    return this.getTaskList();
-  }
+const deleteTask = (taskId) => {
+  taskList = taskList.filter(({ id }) => id !== taskId);
+  return getTaskList();
+};
 
-  resetTodo() {
-    this.todoTitle = 'Todo';
-    this.currentId = 1;
-    this.taskList = [];
-  }
-}
+const resetTodo = () => {
+  todoTitle = 'Todo';
+  currentId = 1;
+  taskList = [];
+};
 
-export default TodoAPI;
+export default {
+  getTodoTitle,
+  getTaskList,
+  addTask,
+  updateTaskStatus,
+  updateTitle,
+  deleteTask,
+  resetTodo,
+};
