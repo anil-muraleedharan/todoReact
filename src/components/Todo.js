@@ -2,41 +2,27 @@ import React, { useState } from 'react';
 import TodoHeader from './TodoHeader';
 import InputBox from './InputBox';
 import TaskList from './TaskList';
-import { getDefaultStatus, toggleCurrentStatus } from './taskStatus';
+import TodoAPI from '../todoAPI';
+
+const todoAPI = new TodoAPI();
 
 const Todo = (props) => {
-  const [todoTitle, setTodoTitle] = useState('Todo');
-  const [currentTaskId, setCurrentTaskId] = useState(1);
-  const [taskList, setTaskList] = useState([]);
+  const [todoTitle, setTodoTitle] = useState(todoAPI.getTodoTitle());
+  const [taskList, setTaskList] = useState(todoAPI.getTaskList());
 
-  const saveTask = (task) => {
-    setTaskList(
-      taskList.concat({
-        id: currentTaskId,
-        task: task,
-        status: getDefaultStatus(),
-      })
-    );
-    setCurrentTaskId(currentTaskId + 1);
-  };
+  const saveTask = (task) => setTaskList(todoAPI.addTask(task));
 
-  const updateTaskStatus = (taskId) => {
-    const updatedTaskList = taskList.slice();
-    const taskIndex = updatedTaskList.findIndex((task) => task.id === taskId);
-    const currentStatus = updatedTaskList[taskIndex].status;
-    updatedTaskList[taskIndex].status = toggleCurrentStatus(currentStatus);
-    setTaskList(updatedTaskList);
-  };
+  const updateTaskStatus = (taskId) =>
+    setTaskList(todoAPI.updateTaskStatus(taskId));
 
-  const updateTitle = (title) => setTodoTitle(title);
+  const updateTitle = (title) => setTodoTitle(todoAPI.updateTitle(title));
 
-  const deleteTask = (taskId) =>
-    setTaskList(taskList.filter(({ id }) => id !== taskId));
+  const deleteTask = (taskId) => setTaskList(todoAPI.deleteTask(taskId));
 
   const deleteTodo = () => {
-    setTodoTitle('Todo');
-    setCurrentTaskId(1);
-    setTaskList([]);
+    todoAPI.resetTodo();
+    setTodoTitle(todoAPI.getTodoTitle());
+    setTaskList(todoAPI.getTaskList());
   };
 
   return (
